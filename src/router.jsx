@@ -14,9 +14,6 @@ export const router = createBrowserRouter(
       ],
     },
   ],
-  {
-    basename: "/personal-website",
-  }
 );
 
 function NavLayout() {
