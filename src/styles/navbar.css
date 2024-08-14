@@ -26,6 +26,7 @@
   color: white;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .site-nav-link {
@@ -112,7 +113,7 @@
 
 @media (max-width: 28.7rem) {
   .site-nav-links {
-    display: none;
+    justify-content: center;
     }
 }
 
