@@ -2,17 +2,22 @@ import { createBrowserRouter, Outlet, useLocation } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Projects from "./pages/Projects";
 import "./styles/router.css";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      element: <NavLayout />,
+      children: [
+        { path: "/", element: <Homepage /> },
+        { path: "/projects", element: <Projects /> },
+      ],
+    },
+  ],
   {
-    element: <NavLayout />,
-    children: [
-      { path: "/", element: <Homepage /> },
-      { path: "/projects", element: <Projects /> },
-    ],
-  },
-]);
+    basename: "/personal-website",
+  }
+);
 
 function NavLayout() {
   return (

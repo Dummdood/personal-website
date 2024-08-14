@@ -14,7 +14,7 @@ export default function Resume() {
         <iframe
           className="resume-file"
           src="CV_Laurier_Gauvin.pdf"
-          frameborder="0"
+          frameBorder="0"
         ></iframe>
       </div>
     </section>
