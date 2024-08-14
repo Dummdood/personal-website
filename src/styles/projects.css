@@ -1,0 +1,32 @@
+.temp-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  /* background-color: red; */
+  padding-top: 20rem;
+  background-color: black;
+  color: white;
+
+  background-image: url("/homepageBackground_combined.png");
+  background-size: cover; /* Ensures the image covers the entire page */
+  background-position: left top; /* Centers the image */
+  background-repeat: repeat; /* Prevents the image from repeating */
+}
+
+.back-home-button {
+    border-color: white;
+    border-width: 0.5rem;
+    border-radius: 1rem;
+    padding: .5rem;
+    transition: font-size 0.25s ease;
+    font-size: 3rem;
+}
+
+.back-home-button:hover {
+    font-size: 3.5rem;
+}

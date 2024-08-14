@@ -1,0 +1,44 @@
+/* .footer {
+  background-color: black;
+  height: 6.25rem;
+  min-height: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+}
+
+.copyright-text {
+  color: white;
+}
+
+.copyright {
+  text-align: center;
+  margin-left: 1rem;
+}
+
+.socials-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+.socials-links a {
+  color: white; /* Default icon color */
+  /* transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socials-links a:hover {
+  transform: scale(1.2);
+}
+
+.socials-links a:hover:nth-child(1) {
+  color: purple; /* GitHub black */
+/* }
+
+.socials-links a:hover:nth-child(2) {
+  color: #0e6ea2; /* LinkedIn blue */
+
