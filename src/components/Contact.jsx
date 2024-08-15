@@ -78,22 +78,51 @@ export default function Contact() {
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    }).then((res) => res.json());
+    // Define a timeout function
+    const timeout = (ms) =>
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Request timed out")), ms)
+      );
 
-    if (res.success) {
+    try {
+      const res = await Promise.race([
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        }).then((res) => res.json()),
+        timeout(5000),
+      ]);
+
+      if (res.success) {
+        Swal.fire({
+          title: "Success!",
+          text: "Your message has been received. I will get back to you shortly.",
+          icon: "success",
+        });
+      } else if (res.error) {
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred while sending your message. Please try again.",
+          icon: "error",
+        });
+        return;
+      }
+    } catch (error) {
       Swal.fire({
-        title: "Success!",
-        text: "Your message has been sent. I will get back to you shortly.",
-        icon: "success",
+        title: "Error!",
+        text: "An error occured. Please check your Internet connection or try again later.",
+        icon: "error",
       });
+      return;
     }
+
+    event.target.elements.name.value = "";
+    event.target.elements.email.value = "";
+    event.target.elements.message.value = "";
   };
 
   return (
