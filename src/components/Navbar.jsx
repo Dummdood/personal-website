@@ -5,6 +5,7 @@ import "../styles/footer.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Navbar() {
+  // define icon size for github and linkedin logos
   let iconSize = 45;
 
   const scrollToSection = (sectionId) => {
