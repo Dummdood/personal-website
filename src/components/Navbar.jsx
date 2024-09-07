@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Element, scroller } from "react-scroll";
 import "../styles/footer.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import SignInModal from "./SignInModal";
 
 export default function Navbar() {
   let iconSize = 45;
@@ -80,6 +81,7 @@ export default function Navbar() {
             >
               <FaLinkedin size={iconSize} />
             </a>
+            <SignInModal />
           </div>
         </div>
       </nav>

@@ -1,0 +1,37 @@
+/* Modal Button Styles */
+
+.signin-button {
+    background-color: purple;
+    transition: 0.35s ease;
+    font-size: 1.25rem;
+}
+
+.signin-button:hover {
+    background-color: #5009a7;
+    transform: scale(1.1);
+}
+
+.signin-button:active {
+    background-color: #5009a7;
+    border-color: black;
+}
+
+/* Modal Styles */
+.modal-title {
+    width: 100%;
+    display: block;
+}
+
+.modal-account-check {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.modal-signup {
+    text-decoration: none;
+}
+
+.modal-signup:hover {
+    text-decoration: underline;
+}

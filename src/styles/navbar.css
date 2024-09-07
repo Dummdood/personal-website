@@ -27,6 +27,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+
 }
 
 .site-nav-link {
@@ -34,6 +35,8 @@
   font-family: Arial, sans-serif;
   font-weight: bold;
   transition: font-size 0.35s ease, text-decoration-line 0.35s ease;
+  text-decoration: none;
+  color: white;
 }
 
 .site-nav-link:hover {
