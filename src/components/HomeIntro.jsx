@@ -14,7 +14,7 @@ export default function HomeIntro() {
             Currently, I'm studying Electrical Engineering and Computer
             Science at McGill University. <br />
             <br />
-            Outside of class, I serve as an organizer at Effective Altruism McGill, a group
+            Outside of class, I serve as co-president of Effective Altruism McGill, a group
             focused on educating the student body on topics relating to global
             poverty, animal welfare, existential risk, and beyond.
           </p>
