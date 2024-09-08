@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "../styles/signinmodal.css";
+import { handleSignInSubmit, handleSignUpSubmit } from "../utils/authHandlers";
 
 function SignInModal() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-
-  const handleCloseSignIn = () => setShowSignIn(false);
-  const handleShowSignIn = () => setShowSignIn(true);
-
-  const handleCloseSignUp = () => setShowSignUp(false);
-  const handleShowSignUp = () => {
-    setShowSignIn(false); // Close sign-in modal
-    setShowSignUp(true); // Open sign-up modal
-  };
-
-  const handleSwitchToSignIn = () => {
-    setShowSignUp(false); // Close sign-up modal
-    setShowSignIn(true); // Open sign-in modal
-  };
 
   return (
     <>
@@ -26,13 +13,13 @@ function SignInModal() {
       <Button
         className="signin-button"
         variant="primary"
-        onClick={handleShowSignIn}
+        onClick={() => setShowSignIn(true)}
       >
         Sign In
       </Button>
 
       {/* Sign In Modal */}
-      <Modal show={showSignIn} onHide={handleCloseSignIn}>
+      <Modal show={showSignIn} onHide={() => setShowSignIn(false)}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-title">Sign In</Modal.Title>
         </Modal.Header>
@@ -42,13 +29,16 @@ function SignInModal() {
             <a
               className="modal-signup"
               href="#signup"
-              onClick={handleShowSignUp}
+              onClick={() => {
+                setShowSignIn(false); // Close sign-in modal
+                setShowSignUp(true); // Open sign-up modal
+              }}
             >
               Sign Up
             </a>
           </p>
 
-          <Form>
+          <Form className="signin-form" onSubmit={handleSignInSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
@@ -63,11 +53,11 @@ function SignInModal() {
               Sign In
             </Button>
           </Form>
-        </Modal.Body>~
+        </Modal.Body>
       </Modal>
 
       {/* Sign Up Modal */}
-      <Modal show={showSignUp} onHide={handleCloseSignUp}>
+      <Modal show={showSignUp} onHide={() => setShowSignUp(false)}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-title">Sign Up</Modal.Title>
         </Modal.Header>
@@ -77,12 +67,15 @@ function SignInModal() {
             <a
               className="modal-login"
               href="#login"
-              onClick={handleSwitchToSignIn}
+              onClick={() => {
+                setShowSignUp(false); // Close sign-up modal
+                setShowSignIn(true); // Open sign-in modal
+              }}
             >
               Log In
             </a>
           </p>
-          <Form>
+          <Form className="signup-form" onSubmit={handleSignUpSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />

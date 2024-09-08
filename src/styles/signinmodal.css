@@ -28,6 +28,11 @@
     font-size: 1rem;
 }
 
+.signin-form > div, .signup-form > div {
+    margin-bottom: 1rem;
+  }
+  
+
 .modal-signup {
     text-decoration: none;
 }
