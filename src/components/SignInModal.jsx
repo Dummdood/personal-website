@@ -4,8 +4,52 @@ import "../styles/signinmodal.css";
 import { handleSignInSubmit, handleSignUpSubmit } from "../utils/authHandlers";
 
 function SignInModal() {
+  // Sign-in and sign-up modal states
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+
+  // States for error messages
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const email = event.target.formBasicEmail.value;
+    const password = event.target.formBasicPassword.value;
+
+    // TODO: Add errors for invalid email and password
+    handleSignInSubmit(email, password, setEmailError, setPasswordError, () =>
+      setShowSignIn(false)
+    );
+  };
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const email = event.target.formBasicEmail.value;
+    const password = event.target.formBasicPassword.value;
+    const confirmPassword = event.target.formBasicPasswordConfirm.value;
+
+    // TODO: Add errors for invalid email and password
+    handleSignUpSubmit(
+      email,
+      password,
+      confirmPassword,
+      setEmailError,
+      setPasswordError,
+      setConfirmPasswordError,
+      () => setShowSignIn(false)
+    );
+  };
+
+  // Clears error message when the user starts typing
+  const clearErrorMessages = () => {
+    setEmailError("");
+    setPasswordError("");
+    setConfirmPasswordError("");
+
+    // TODO red error color around input fields
+  };
 
   return (
     <>
@@ -38,15 +82,25 @@ function SignInModal() {
             </a>
           </p>
 
-          <Form className="signin-form" onSubmit={handleSignInSubmit}>
+          <Form className="signin-form" onSubmit={handleSignIn}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter your email"
+                onChange={clearErrorMessages}
+              />
+              {emailError && <p style={{ color: "red" }}>{emailError}</p>}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Enter your password"
+                onChange={clearErrorMessages}
+              />
+              {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
             </Form.Group>
 
             <Button variant="primary" type="submit">
@@ -75,20 +129,37 @@ function SignInModal() {
               Log In
             </a>
           </p>
-          <Form className="signup-form" onSubmit={handleSignUpSubmit}>
+          <Form className="signup-form" onSubmit={handleSignUp}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={clearErrorMessages}
+              />
+              {emailError && <p style={{ color: "red" }}>{emailError}</p>}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Create a password" />
+              <Form.Control
+                type="password"
+                placeholder="Create a password"
+                onChange={clearErrorMessages}
+              />
+              {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
             </Form.Group>
 
             <Form.Group controlId="formBasicPasswordConfirm">
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password" placeholder="Confirm password" />
+              <Form.Control
+                type="password"
+                placeholder="Confirm password"
+                onChange={clearErrorMessages}
+              />
+              {confirmPasswordError && (
+                <p style={{ color: "red" }}>{confirmPasswordError}</p>
+              )}
             </Form.Group>
 
             <Button variant="primary" type="submit">
