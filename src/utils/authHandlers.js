@@ -76,25 +76,25 @@ const validateEmailAndPassword = (
   confirmPassword = null,
   setConfirmPasswordError = null
 ) => {
-  emailAndPasswordValid = true;
-  passwordValid = true;
+  let emailAndPasswordValid = true;
+  let passwordValid = true;
 
   // Validate email
   if (!validateEmail(email)) {
-    setEmailError("Invalid email");
+    setEmailError("Please enter a valid email address.");
     emailAndPasswordValid = false;
   }
 
   // Validate password
   if (!validatePassword(password)) {
     setPasswordError(
-      "Password must be at least 8 characters with 1 uppercase letter, 1 lowercase letter, and 1 number"
+      "Password must be 8+ characters with upper, lower, and a number."
     );
     emailAndPasswordValid = false;
     passwordValid = false;
   }
 
-  // If confirmPassword is provided , check if passwords match
+  // If confirmPassword is provided, check if passwords match
   if (
     confirmPassword !== null &&
     password !== confirmPassword &&

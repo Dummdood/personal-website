@@ -1,42 +1,58 @@
 /* Modal Button Styles */
 
 .signin-button {
-    background-color: purple;
-    transition: 0.35s ease;
-    font-size: 1.25rem;
+  background-color: purple;
+  transition: 0.35s ease;
+  font-size: 1.25rem;
 }
 
 .signin-button:hover {
-    background-color: #5009a7;
-    transform: scale(1.1);
+  background-color: #5009a7;
+  transform: scale(1.1);
 }
 
 .signin-button:active {
-    background-color: #5009a7;
-    border-color: black;
+  background-color: #5009a7;
+  border-color: black;
 }
 
 /* Modal Styles */
 .modal-title {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 .modal-account-check {
-    display: block;
-    width: 100%;
-    font-size: 1rem;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
 }
 
-.signin-form > div, .signup-form > div {
-    margin-bottom: 1rem;
-  }
-  
+.signin-form > div,
+.signup-form > div {
+  margin-bottom: 1rem;
+}
 
 .modal-signup {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .modal-signup:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+.form-error-message {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.error-glow {
+  border: 1px solid red;
+  box-shadow: 0 0 5px red;
+}
+
+.error-glow:focus {
+  border: 1px solid red;
+  box-shadow: 0 0 10px 2px red; /* Adjust these values to make the glow stronger */
+  outline: none; /* Remove the default blue outline */
 }

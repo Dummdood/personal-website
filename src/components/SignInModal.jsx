@@ -18,9 +18,12 @@ function SignInModal() {
     const email = event.target.formBasicEmail.value;
     const password = event.target.formBasicPassword.value;
 
-    // TODO: Add errors for invalid email and password
-    handleSignInSubmit(email, password, setEmailError, setPasswordError, () =>
-      setShowSignIn(false)
+    handleSignInSubmit(
+      email,
+      password,
+      setEmailError,
+      setPasswordError,
+      closeModal
     );
   };
 
@@ -30,7 +33,6 @@ function SignInModal() {
     const password = event.target.formBasicPassword.value;
     const confirmPassword = event.target.formBasicPasswordConfirm.value;
 
-    // TODO: Add errors for invalid email and password
     handleSignUpSubmit(
       email,
       password,
@@ -38,7 +40,7 @@ function SignInModal() {
       setEmailError,
       setPasswordError,
       setConfirmPasswordError,
-      () => setShowSignIn(false)
+      closeModal
     );
   };
 
@@ -47,8 +49,18 @@ function SignInModal() {
     setEmailError("");
     setPasswordError("");
     setConfirmPasswordError("");
+  };
 
-    // TODO red error color around input fields
+  const switchModal = () => {
+    clearErrorMessages();
+    setShowSignIn(!showSignIn);
+    setShowSignUp(!showSignUp);
+  };
+
+  const closeModal = () => {
+    clearErrorMessages();
+    setShowSignIn(false);
+    setShowSignUp(false);
   };
 
   return (
@@ -70,27 +82,21 @@ function SignInModal() {
         <Modal.Body>
           <p className="modal-account-check">
             Don't yet have an account?{" "}
-            <a
-              className="modal-signup"
-              href="#signup"
-              onClick={() => {
-                setShowSignIn(false); // Close sign-in modal
-                setShowSignUp(true); // Open sign-up modal
-              }}
-            >
+            <a className="modal-signup" href="#signup" onClick={switchModal}>
               Sign Up
             </a>
           </p>
 
-          <Form className="signin-form" onSubmit={handleSignIn}>
+          <Form className="signin-form" onSubmit={handleSignIn} noValidate>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Enter your email"
+                className={emailError ? "error-glow" : ""}
                 onChange={clearErrorMessages}
               />
-              {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+              {emailError && <p className="form-error-message">{emailError}</p>}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -98,9 +104,12 @@ function SignInModal() {
               <Form.Control
                 type="password"
                 placeholder="Enter your password"
+                className={passwordError ? "error-glow" : ""}
                 onChange={clearErrorMessages}
               />
-              {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+              {passwordError && (
+                <p className="form-error-message">{passwordError}</p>
+              )}
             </Form.Group>
 
             <Button variant="primary" type="submit">
@@ -118,26 +127,20 @@ function SignInModal() {
         <Modal.Body>
           <p className="modal-account-check">
             Already have an account?{" "}
-            <a
-              className="modal-login"
-              href="#login"
-              onClick={() => {
-                setShowSignUp(false); // Close sign-up modal
-                setShowSignIn(true); // Open sign-in modal
-              }}
-            >
+            <a className="modal-login" href="#login" onClick={switchModal}>
               Log In
             </a>
           </p>
-          <Form className="signup-form" onSubmit={handleSignUp}>
+          <Form className="signup-form" onSubmit={handleSignUp} noValidate>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Enter email"
+                className={emailError ? "error-glow" : ""}
                 onChange={clearErrorMessages}
               />
-              {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+              {emailError && <p className="form-error-message">{emailError}</p>}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -145,9 +148,12 @@ function SignInModal() {
               <Form.Control
                 type="password"
                 placeholder="Create a password"
+                className={passwordError ? "error-glow" : ""}
                 onChange={clearErrorMessages}
               />
-              {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+              {passwordError && (
+                <p className="form-error-message">{passwordError}</p>
+              )}
             </Form.Group>
 
             <Form.Group controlId="formBasicPasswordConfirm">
@@ -155,10 +161,11 @@ function SignInModal() {
               <Form.Control
                 type="password"
                 placeholder="Confirm password"
+                className={confirmPasswordError ? "error-glow" : ""}
                 onChange={clearErrorMessages}
               />
               {confirmPasswordError && (
-                <p style={{ color: "red" }}>{confirmPasswordError}</p>
+                <p className="form-error-message">{confirmPasswordError}</p>
               )}
             </Form.Group>
 
