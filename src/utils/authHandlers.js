@@ -23,8 +23,18 @@ export const handleSignInSubmit = async (
       },
       body: JSON.stringify({ email, password }),
     });
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      setEmailError(errorData.message);
+      setPasswordError(errorData.message);
+
+      return;
+    }
+
+    // If the response is ok (status 200), handle the success
     const data = await response.json();
-    console.log(data);
+    console.log("Success:", data);
     closeModal(); // Close the modal after successful sign-in
   } catch (error) {
     console.error("Error:", error);
@@ -58,7 +68,7 @@ export const handleSignUpSubmit = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password, confirmPassword }),
+      body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
     console.log(data);
