@@ -25,16 +25,17 @@ export const handleSignInSubmit = async (
     });
     if (!response.ok) {
       const errorData = await response.json();
-
       setEmailError(errorData.message);
       setPasswordError(errorData.message);
-
       return;
     }
-
-    // If the response is ok (status 200), handle the success
+    // If the response is successful, extract the token
     const data = await response.json();
-    console.log("Success:", data);
+    const token = data.token;
+
+    // Save the token to localStorage
+    localStorage.setItem("authToken", token);
+    console.log("Token saved to localStorage:", token);
     closeModal(); // Close the modal after successful sign-in
   } catch (error) {
     console.error("Error:", error);
